@@ -146,13 +146,15 @@ function downy() {
   cube.style.transform = 'rotateX(-90deg)';
   doIt(bottom.innerHTML,'d');
 }
-
 function lefty() {
-  cube.style.transform = 'rotateY(-90deg)';
+
+  cube.style.transform = 'rotateY(90deg)';
+  l.style.transform = 'rotateX(-90deg)';
   doIt(left.innerHTML,'l');
 }
 
 function righty() {
-  cube.style.transform = 'rotateY(90deg)';
+  cube.style.transform = 'rotateY(-90deg)';
+  r.style.transform = 'rotateX(90deg)';
   doIt(right.innerHTML,'r');
 }
