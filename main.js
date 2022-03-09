@@ -138,23 +138,23 @@ var count = Object.keys(data).length;
 
 let cube = document.querySelector('#kyub');
 function upy() {
-  cube.style.transform = 'rotateX(90deg)';
+  cube.style.transform = 'rotateX(-90deg)';
   doIt(top.innerHTML,'t');
 }
 
 function downy() {
-  cube.style.transform = 'rotateX(-90deg)';
+  cube.style.transform = 'rotateX(90deg)';
   doIt(bottom.innerHTML,'d');
 }
 function lefty() {
 
   cube.style.transform = 'rotateY(90deg)';
-  l.style.transform = 'rotateX(-90deg)';
+  l.style.transform = 'rotateY(-90deg)';
   doIt(left.innerHTML,'l');
 }
 
 function righty() {
   cube.style.transform = 'rotateY(-90deg)';
-  r.style.transform = 'rotateX(90deg)';
+  r.style.transform = 'rotateY(90deg)';
   doIt(right.innerHTML,'r');
 }
