@@ -140,14 +140,20 @@ var count = Object.keys(data).length;
 let cube = document.querySelector('#kyub');
 function upy() {
   cube.style.transform = 'rotateX(-90deg)';
+<<<<<<< HEAD
   f.style.transform = 'rotateX(90deg)';
+=======
+>>>>>>> bff26abc68b6c1042afdcc9366b0146872b25036
   doIt(top.innerHTML,'t');
 
 }
 
 function downy() {
   cube.style.transform = 'rotateX(90deg)';
+<<<<<<< HEAD
     d.style.transform = 'rotateX(-90deg)';
+=======
+>>>>>>> bff26abc68b6c1042afdcc9366b0146872b25036
   doIt(bottom.innerHTML,'d');
 }
 function lefty() {
