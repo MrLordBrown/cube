@@ -94,6 +94,7 @@ let lt = document.querySelector("#left");
 let rt = document.querySelector("#right");
 
 f.innerHTML = data[0].front;
+l.innerHTML = data[0].id
 tp.innerHTML = data[0].top;
 bm.innerHTML = data[0].bottom;
 lt.innerHTML = data[0].left;
@@ -115,9 +116,9 @@ lt.innerHTML = data[i].left;
 rt.innerHTML = data[i].right;
 }
 }
-if (y == 't') {
+if (y == 'f') {
   d.id = 'b';
-  f.id = 't';
+  f.id = 'd';
   t.id = 'f';
 } else if (y == 'd') {
   t.id = 'b';
@@ -138,21 +139,26 @@ var count = Object.keys(data).length;
 
 let cube = document.querySelector('#kyub');
 function upy() {
-  cube.style.transform = 'rotateX(90deg)';
+  cube.style.transform = 'rotateX(-90deg)';
+  f.style.transform = 'rotateX(90deg)';
   doIt(top.innerHTML,'t');
+
 }
 
 function downy() {
-  cube.style.transform = 'rotateX(-90deg)';
+  cube.style.transform = 'rotateX(90deg)';
+    d.style.transform = 'rotateX(-90deg)';
   doIt(bottom.innerHTML,'d');
 }
-
 function lefty() {
-  cube.style.transform = 'rotateY(-90deg)';
+
+  cube.style.transform = 'rotateY(90deg)';
+  l.style.transform = 'rotateY(-90deg)';
   doIt(left.innerHTML,'l');
 }
 
 function righty() {
-  cube.style.transform = 'rotateY(90deg)';
+  cube.style.transform = 'rotateY(-90deg)';
+  r.style.transform = 'rotateY(90deg)';
   doIt(right.innerHTML,'r');
 }

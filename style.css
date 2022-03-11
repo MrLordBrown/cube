@@ -1,261 +1,84 @@
-/*!
-/**
- * Quintessential Responsive 3D CSS Cube
- * https://github.com/zachstronaut/quintessential-css-cube/
- * 2015-03-04 Release
- * MIT License
- *
- * Zachary Johnson, @zacharyjohnson
- * Zachstronaut LLC, http://www.zachstronaut.com
- *
- */
-
-/*
-
-
-Features:
-=========
-	-Specify the size of your cube in a single CSS rule
-	-Specify the color/texture of your cube with a single CSS rule
-	-Automatic flat shading (make the cube whatever color or texture or DOM content you want, it'll be given basic shading for you via :after pseudo element)
-	-Flexible tags for cube faces (your cube can be div tags or a ul list or whatever)
-	-Excellent responsive design support
-
-
-Example Usage:
-A red 200 x 200 x 200px cube
-============================
-
-<style>
-
-#cube1 { width: 200px; height: 200px; }
-
-	#cube1 > * { background: #f00; }
-
-</style>
-
-<ul id="cube1" class="qube">
-	<li class="f"></li>
-	<li class="l"></li>
-	<li class="back"></li>
-	<li class="r"></li>
-	<li class="t"></li>
-	<li class="d"></li>
-</ul>
-
-*/
-
-* {padding: 0;
+* {
+	padding: 0;
+	margin: 0;
 }
 
-.qube-perspective {
-	-webkit-perspective: 900px;
-	-moz-perspective: 900px;
-	perspective: 900px;
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.qube-preserve3d {
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+
+.cube-container {
+	display: grid;
+	grid-template-areas: ". top ."
+	"left kyub right"
+	". bottom .";
+	grid-template-columns: 25vw 50vw 25vw;
+	grid-template-rows: 25vh 50vh 25vh;
+    text-align: center;
+    perspective: 45em;
 }
 
-.f .l .back .r .t .d {
-  margin-left: 50%;
-  margin-top: 50%;
-}
-.qube {
-  grid-area: qube;
-	position: absolute;
-  padding: 0;
-	list-style: none;
-	width: 100%;
-	height: 100%;
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+.cube {
+	grid-area: kyub;
+    width: 50vh;
+    height: 50vh;
+    position: relative;
+    transform-style: preserve-3d;
+    transition-duration: 2s;
 }
 
-	.qube > * {
-		background: #666;
-		background-size: 100%;
-	}
-
-	.qube > *,
-	.qube > *:after {
-		position: absolute;
-		left: 0;
-		top: 0;
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.qube > *:after {
-		pointer-events: none; /* Prevent shadows from interfering with DOM mouse/touch events */
-		display: block;
-		content: "";
-	}
-
-		.qube.no-shading > *:after {
-			display: none;
-		}
-
-		/* If your cube is not semi-transparent and you are not displaying the inside of your cube, make it .solid to optimize rendering. Using this class is optional. */
-		.qube.solid > *,
-		.qube.solid > *:after {
-			-webkit-backface-visibility: hidden;
-			-moz-backface-visibility: hidden;
-			backface-visibility: hidden;
-		}
-
-		.qube.textured > * {
-			background-size: 300%;
-		}
-
-	.qube > .f,
-	.qube.faces > *:nth-child(1) {
-		/* This is the real breakthrough: We can't just translateZ(-100%) because Z has no dimension value for calculating a percentage, however we can be sneaky and rotate such that we can translate on an axis that *does* have real dimensions, and then we can rotate back! */
-		-webkit-transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
-		-moz-transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
-		transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
-	}
-
-		.qube > .f:after,
-		.qube.faces > *:nth-child(1):after {
-		}
-
-		.qube.textured > #f,
-		.qube.textured.faces > *:nth-child(1) {
-			background-position: 0 0;
-		}
-
-	.qube > #b,
-	.qube.faces > *:nth-child(3) {
-		-webkit-transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
-		-moz-transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
-		transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
-	}
-
-		.qube > #b:after,
-		.qube.faces > *:nth-child(3):after {
-			background: rgba(0, 0, 0, 0.6);
-		}
-
-		.qube.x-axis > #b,
-		.qube.x-axis.faces > *:nth-child(3) {
-			-webkit-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
-			-moz-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
-			transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
-		}
-
-		.qube.textured > #b,
-		.qube.textured.faces > *:nth-child(3) {
-			background-position: -100% 0;
-		}
-
-	.qube > #l,
-	.qube.faces > *:nth-child(2) {
-		-webkit-transform: translateX(-50%) rotateY(-90deg);
-		-moz-transform: translateX(-50%) rotateY(-90deg);
-		transform: translateX(-50%) rotateY(-90deg);
-	}
-
-		.qube > #l:after,
-		.qube.faces > *:nth-child(2):after {
-			background: rgba(0, 0, 0, 0.5);
-		}
-
-		.qube.textured > #l,
-		.qube.textured.faces > *:nth-child(2) {
-			background-position: -200% 0;
-		}
-
-	.qube > #r,
-	.qube.faces > *:nth-child(4) {
-		-webkit-transform: translateX(50%) rotateY(90deg);
-		-moz-transform: translateX(50%) rotateY(90deg);
-		transform: translateX(50%) rotateY(90deg);
-	}
-
-		.qube > #r:after,
-		.qube.faces > *:nth-child(4):after {
-			background: rgba(0, 0, 0, 0.3);
-		}
-
-		.qube.textured > #r,
-		.qube.textured.faces > *:nth-child(4) {
-			background-position: 0 -100%;
-		}
-
-	.qube > #t,
-	.qube.faces > *:nth-child(5) {
-		-webkit-transform: translateY(-50%) rotateX(90deg);
-		-moz-transform: translateY(-50%) rotateX(90deg);
-		transform: translateY(-50%) rotateX(90deg);
-	}
-
-		.qube > #t:after,
-		.qube.faces > *:nth-child(5):after {
-			background: rgba(0, 0, 0, 0.2);
-		}
-
-		.qube.textured > #t,
-		.qube.textured.faces > *:nth-child(5) {
-			background-position: -100% -100%;
-		}
-
-	.qube > #d,
-	.qube.faces > *:nth-child(6) {
-		-webkit-transform: translateY(50%) rotateX(-90deg);
-		-moz-transform: translateY(50%) rotateX(-90deg);
-		transform: translateY(50%) rotateX(-90deg);
-	}
-
-		.qube > #d:after,
-		.qube.faces > *:nth-child(6):after {
-			background: rgba(0, 0, 0, 0.7);
-		}
-
-		.qube.textured > #d,
-		.qube.textured.faces > *:nth-child(6) {
-			background-position: -200% -100%;
-		}
-
-.cube13 {
-  width: 150px; height: 150px;
-  transition: transform 1500ms ease;
+.cube-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
 }
 
-.dir {
-  cursor: pointer;
+#top {
+	grid-area: top;
 }
 
-#container {
-  display: grid;
-  grid-template-areas: ". t ."
-  "l qube r"
-  ". d .";
-  grid-template-columns: repeat(3,32vw);
-  grid-template-rows: repeat(3,32vh);
-  justify-items: center;
-  align-items: center;
+#left {
+	grid-area: left;
+}
+
+#right {
+	grid-area: right;
 }
 
 #bottom {
-  grid-area: d;
-}
-#top {
-  grid-area: t;
-  cursor: pointer;
-}
-#right {
-  grid-area: r;
-}
-#left {
-  grid-area: l;
+	grid-area: bottom;
 }
 
-.cube13 > * { color: #000; background: #ddc; }
-/* Some CSS for HTML text not shown */
+#b{
+  transform: translateZ(-100px) rotateY(180deg);
+}
+#r{
+  transform:rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+}
+#l{
+  transform:rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+}
+#t{
+  transform:rotateX(-90deg) translateY(-100px);
+  transform-origin: top center;
+}
+#d{
+  transform:rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+}
+#f{
+  transform: translateZ(100px);
+}
