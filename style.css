@@ -14,6 +14,7 @@ body {
 }
 
 
+<<<<<<< HEAD
 .cube-container {
 	display: grid;
 	grid-template-areas: ". top ."
@@ -50,14 +51,313 @@ body {
 
 #left {
 	grid-area: left;
+=======
+* {padding: 0;
+	margin: 0;
+}
+
+/* keyframes for rotating animation */
+
+/* scene wrapper */
+.wrapper{
+  height: 300px;
+  margin-top:50px;
+  position:relative;
+  perspective: 800;
+  perspective-origin: 50% 100px;
+}
+
+/* cube wrapper */
+.cube{
+	grid-area: qube;
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+  transform-style: preserve-3d;
+  transition: all 1s linear;
+}
+
+/* outer cube */
+b{
+  position:absolute;
+  width:200px;
+  height:200px;
+  display:block;
+  background:rgba(255,255,255,0.1);
+  box-shadow:inset 0 0 30px rgba(0,0,0,0.2);
+  font-size:20px;
+  text-align:center;
+  line-height:200px;
+  color:rgba(0,0,0,0.5);
+  font-family:sans-serif;
+  text-transform:uppercase;
+  transition: all 1s linear;
+}
+#b {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+
+<<<<<<< HEAD
+#r {
+  transform:rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+}
+#l {
+  transform:rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+}
+#t {
+  transform:rotateX(-90deg) translateY(-100px);
+  transform-origin: top center;
+}
+#d {
+  transform:rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+}
+#f {
+  transform: translateZ(100px);
+}
+
+/* inner cube */
+/* hover transformations */
+
+
+=======
+>>>>>>> bff26abc68b6c1042afdcc9366b0146872b25036
+.qube {
+  grid-area: qube;
+	position: absolute;
+  padding: 0;
+	list-style: none;
+	width: 25vw;
+	height: 25vw;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+<<<<<<< HEAD
+#kyub div {
+	position: absolute;
+	width: 25vw;
+	height: 25vw;
+}
+
+.cube13 {
+  width: 25vw; height: 25vw;
+=======
+	.qube > * {
+		background: #666;
+		background-size: 100%;
+	}
+
+	.qube > *,
+	.qube > *:after {
+		position: absolute;
+		left: 0;
+		top: 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.qube > *:after {
+		pointer-events: none; /* Prevent shadows from interfering with DOM mouse/touch events */
+		display: block;
+		content: "";
+	}
+
+		.qube.no-shading > *:after {
+			display: none;
+		}
+
+		/* If your cube is not semi-transparent and you are not displaying the inside of your cube, make it .solid to optimize rendering. Using this class is optional. */
+		.qube.solid > *,
+		.qube.solid > *:after {
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+
+		.qube.textured > * {
+			background-size: 300%;
+		}
+
+	.qube > #f,
+	.qube.faces > *:nth-child(1) {
+		/* This is the real breakthrough: We can't just translateZ(-100%) because Z has no dimension value for calculating a percentage, however we can be sneaky and rotate such that we can translate on an axis that *does* have real dimensions, and then we can rotate back! */
+		-webkit-transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
+		-moz-transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
+		transform: rotateX(90deg) translateY(50%) rotateX(-90deg);
+	}
+
+		.qube > #f:after,
+		.qube.faces > *:nth-child(1):after {
+		}
+
+		.qube.textured > #f,
+		.qube.textured.faces > *:nth-child(1) {
+			background-position: 0 0;
+		}
+
+	.qube > #b,
+	.qube.faces > *:nth-child(3) {
+		-webkit-transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
+		-moz-transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
+		transform: rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);
+	}
+
+		.qube > #b:after,
+		.qube.faces > *:nth-child(3):after {
+			background: rgba(0, 0, 0, 0.6);
+		}
+
+
+		.qube.x-axis > #b,
+		.qube.x-axis.faces > *:nth-child(3) {
+			-webkit-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
+			-moz-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
+			transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
+		}
+
+		.qube.textured > #b,
+		.qube.textured.faces > *:nth-child(3) {
+			background-position: -100% 0;
+		}
+
+	.qube > #l,
+	.qube.faces > *:nth-child(2) {
+		-webkit-transform: translateX(-50%) rotateY(-90deg);
+		-moz-transform: translateX(-50%) rotateY(-90deg);
+		transform: translateX(-50%) rotateY(-90deg);
+	}
+
+		.qube > #l:after,
+		.qube.faces > *:nth-child(2):after {
+			background: rgba(0, 0, 0, 0.5);
+		}
+
+		.qube.textured > #l,
+		.qube.textured.faces > *:nth-child(2) {
+			background-position: -200% 0;
+		}
+
+	.qube > #r,
+	.qube.faces > *:nth-child(4) {
+		-webkit-transform: translateX(50%) rotateY(90deg);
+		-moz-transform: translateX(50%) rotateY(90deg);
+		transform: translateX(50%) rotateY(90deg);
+	}
+
+		.qube > #r:after,
+		.qube.faces > *:nth-child(4):after {
+			background: rgba(0, 0, 0, 0.3);
+		}
+
+		.qube.textured > #r,
+		.qube.textured.faces > *:nth-child(4) {
+			background-position: 0 -100%;
+		}
+
+	.qube > #t,
+	.qube.faces > *:nth-child(5) {
+		-webkit-transform: translateY(-50%) rotateX(90deg);
+		-moz-transform: translateY(-50%) rotateX(90deg);
+		transform: translateY(-50%) rotateX(90deg);
+	}
+
+		.qube > #t:after,
+		.qube.faces > *:nth-child(5):after {
+			background: rgba(0, 0, 0, 0.2);
+		}
+
+		.qube.textured > #t,
+		.qube.textured.faces > *:nth-child(5) {
+			background-position: -100% -100%;
+		}
+
+	.qube > #d,
+	.qube.faces > *:nth-child(6) {
+		-webkit-transform: translateY(50%) rotateX(-90deg);
+		-moz-transform: translateY(50%) rotateX(-90deg);
+		transform: translateY(50%) rotateX(-90deg);
+	}
+
+		.qube > #d:after,
+		.qube.faces > *:nth-child(6):after {
+			background: rgba(0, 0, 0, 0.7);
+		}
+
+		.qube.textured > #d,
+		.qube.textured.faces > *:nth-child(6) {
+			background-position: -200% -100%;
+		}
+
+.cube13 {
+  width: 50%; height: 50%;
+>>>>>>> bff26abc68b6c1042afdcc9366b0146872b25036
+  transition: transform 1500ms ease;
+>>>>>>> 182d46f843588d09bb35fc930d9dafa62d249258
 }
 
 #right {
 	grid-area: right;
 }
 
+<<<<<<< HEAD
 #bottom {
 	grid-area: bottom;
+=======
+#b {
+	transform: translateZ(-25vw) rotateY(180deg);
+	background-color: darkgrey;}
+#r {
+	transform: rotateY(-270deg) translateX(25vw);
+	transform-origin: top right;
+	background-color: grey;
+}
+#l {
+	transform: rotateY(270deg) translateX(-25vw);
+	transform-origin: center left;
+	background-color: grey;
+}
+#t {
+	transform: rotateX(-90deg) translateY(-50vw);
+	transform-origin: top center;
+background-color: grey;}
+#d {
+	transform: rotateX(90deg) translateY(25vw);
+	transform-origin: bottom center;
+	background-color: grey;
+}
+#f {
+	transform: translateZ(25vw);
+	background-color: lightgrey;
+}
+
+#kyub {perspective: 800px;
+	perspective-origin: 50% 25vw;
+	position: relative;
+	width: 25vw;
+	transform-style: preserve-3d;
+}
+
+#container {
+  display: grid;
+  grid-template-areas: ". t ."
+  "l qube r"
+  ". d .";
+  grid-template-columns: 15vw 70vw 15vw;
+  grid-template-rows: 15vh 70vh 15vw;
+<<<<<<< HEAD
+  justify-items: stretch;
+  align-items: stretch;
+=======
+  justify-items: center;
+  align-items: center;
+>>>>>>> bff26abc68b6c1042afdcc9366b0146872b25036
+>>>>>>> 182d46f843588d09bb35fc930d9dafa62d249258
 }
 
 #b{
